@@ -1,7 +1,7 @@
-package br.com.treinamento.adoteUmPet.api.controler.mappers;
+package br.com.treinamento.adoteUmPet.api.mappers;
 
-import br.com.treinamento.adoteUmPet.api.controler.dtos.AdocaoResponse;
-import br.com.treinamento.adoteUmPet.api.controler.dtos.AdocaoResquest;
+import br.com.treinamento.adoteUmPet.api.dtos.AdocaoResponse;
+import br.com.treinamento.adoteUmPet.api.dtos.AdocaoResquest;
 import br.com.treinamento.adoteUmPet.core.model.Adocao;
 import br.com.treinamento.adoteUmPet.repositories.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +15,32 @@ public class AdocaoMapper {
     private PetMapper petMapper;
 
     public Adocao toAdocaoModel (AdocaoResquest adocaoResquest){
-        var adocao = new Adocao();
+/*        var adocao = new Adocao();
         adocao.setEmail(adocaoResquest.getEmail());
         adocao.setValor(adocaoResquest.getValor());
         adocao.setPet(petRepository.findbyIdOrElsePet(adocaoResquest.getPetId()));
-        return adocao;
+        return adocao;*/
+        return Adocao.builder()
+                .email(adocaoResquest.getEmail())
+                .valor(adocaoResquest.getValor())
+                .pet(petRepository.findbyIdOrElsePet(adocaoResquest.getPetId()))
+                .build();
+
     }
 
     public AdocaoResponse toAResponse(Adocao  adocao){
-        var adocaoResponse = new AdocaoResponse();
+/*        var adocaoResponse = new AdocaoResponse();
         adocaoResponse.setId(adocao.getId());
         adocaoResponse.setEmail(adocao.getEmail());
         adocaoResponse.setValor(adocao.getValor());
         adocaoResponse.setPet(petMapper.toPetResponse(adocao.getPet()));
-        return adocaoResponse;
+        return adocaoResponse;*/
+        return AdocaoResponse.builder()
+                .id(adocao.getId())
+                .email(adocao.getEmail())
+                .valor(adocao.getValor())
+                .pet(petMapper.toPetResponse(adocao.getPet()))
+                .build();
+
     }
 }

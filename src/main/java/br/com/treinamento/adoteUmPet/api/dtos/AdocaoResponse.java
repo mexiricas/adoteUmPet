@@ -1,17 +1,17 @@
-package br.com.treinamento.adoteUmPet.api.controler.dtos;
+package br.com.treinamento.adoteUmPet.api.dtos;
 
-import br.com.treinamento.adoteUmPet.core.model.Pet;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdocaoResponse {
-
 
     private Long id;
     private String email;
